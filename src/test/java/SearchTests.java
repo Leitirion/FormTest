@@ -7,11 +7,12 @@ import static com.codeborne.selenide.Selenide.*;
 public class SearchTests {
 
     @Test
-    void selenideSearchTest() {
+    void selenideSearchTest() throws InterruptedException {
         open("https://www.google.com/");
 
         $(byName("q")).setValue("selenide").pressEnter();
 
         $("#search").shouldHave(text("selenide.org"));
+        Thread.sleep(4000);
     }
 }
