@@ -30,14 +30,10 @@ public class FormTest {
         $x("//div[@class=\"react-datepicker__month\"]//div[text()=1]").click();
         $("#userNumber").setValue(userNumber).pressEnter();
 
-
-       // $x("//input[@id=\"dateOfBirthInput\"]").setValue(Day+" "+Month+" "+Year);
-
         $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Student Name\"]]/td[2]").shouldBe(visible).shouldHave(text(firstName+" "+lastName));
         $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Mobile\"]]/td[2]").shouldBe(visible).shouldHave(text(userNumber));
         $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Student Email\"]]/td[2]").shouldBe(visible).shouldHave(text(StudentEmail));
         $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Gender\"]]/td[2]").shouldBe(visible).shouldHave(text("Female"));
         $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Date of Birth\"]]/td[2]").shouldBe(visible).shouldHave(text(Day+" "+Month+","+Year));
-        //div[@class="modal-content"]//tbody//tr[.//td[1][text()="Gender"]]/td[2]
     }
 }
