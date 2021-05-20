@@ -16,8 +16,8 @@ public class FormTest {
         String StudentEmail = "userEmail@gmail.com";
         String userNumber = "1234567890";
         String Day = "01";
-        String Month = "May";
-        String Year = "2021";
+        String Month = "April";
+        String Year = "2001";
 
         open(URL);
 
@@ -29,7 +29,10 @@ public class FormTest {
         $("#userNumber").setValue(userNumber);
         $x("//input[@id=\"gender-radio-2\"][@value=\"Female\"]").doubleClick();
         $x("//input[@id=\"dateOfBirthInput\"]").click();
+        $x("//select[@class=\"react-datepicker__year-select\"]//option[@value=\"2001\"][text()=\"2001\"]").click();
+        $x("//select[@class=\"react-datepicker__month-select\"]//option[@value=\"3\"][text()=\"April\"]").click();
         $x("//div[@class=\"react-datepicker__month\"]//div[text()=1]").click();
+
         $("#subjectsInput").setValue("History").pressEnter();
         $("[for='hobbies-checkbox-3']").click();
         $("#uploadPicture").uploadFile(new File("123.PNG"));
