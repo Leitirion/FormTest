@@ -6,8 +6,14 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
+
+
+
 public class FormTest {
 
+    public void elementShouldHaveText(String row, String value){
+        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"%s\"]]/td[2]".formatted(row)).shouldBe(visible).shouldHave(text(value));
+    }
     @Test
     void AutomationFormTest() {
         String URL = "https://demoqa.com/automation-practice-form";
@@ -35,22 +41,22 @@ public class FormTest {
 
         $("#subjectsInput").setValue("History").pressEnter();
         $("[for='hobbies-checkbox-3']").click();
-        $("#uploadPicture").uploadFile(new File("123.PNG"));
+        $("#uploadPicture").uploadFile(new File("resources/TestPicture.PNG"));
         $("#currentAddress").setValue("Russia, Ufa.");
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#react-select-4-input").setValue("Noida").pressEnter();
         $("#submit").pressEnter();
 
+        elementShouldHaveText("Student Name",firstName+" "+lastName);
+        elementShouldHaveText("Mobile",userNumber);
+        elementShouldHaveText("Student Email",StudentEmail);
+        elementShouldHaveText("Gender","Female");
+        elementShouldHaveText("Date of Birth",Day+" "+Month+","+Year);
+        elementShouldHaveText("Subjects","History");
+        elementShouldHaveText("Hobbies","Music");
+        elementShouldHaveText("Picture","TestPicture.PNG");
+        elementShouldHaveText("Address","Russia, Ufa.");
+        elementShouldHaveText("State and City","NCR Noida");
 
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Student Name\"]]/td[2]").shouldBe(visible).shouldHave(text(firstName+" "+lastName));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Mobile\"]]/td[2]").shouldBe(visible).shouldHave(text(userNumber));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Student Email\"]]/td[2]").shouldBe(visible).shouldHave(text(StudentEmail));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Gender\"]]/td[2]").shouldBe(visible).shouldHave(text("Female"));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Date of Birth\"]]/td[2]").shouldBe(visible).shouldHave(text(Day+" "+Month+","+Year));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Subjects\"]]/td[2]").shouldBe(visible).shouldHave(text("History"));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Hobbies\"]]/td[2]").shouldBe(visible).shouldHave(text("Music"));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Picture\"]]/td[2]").shouldBe(visible).shouldHave(text("123.PNG"));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"Address\"]]/td[2]").shouldBe(visible).shouldHave(text("Russia, Ufa."));
-        $x("//div[@class=\"modal-content\"]//tbody//tr[.//td[1][text()=\"State and City\"]]/td[2]").shouldBe(visible).shouldHave(text("NCR Noida"));
     }
 }
